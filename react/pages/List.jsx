@@ -8,8 +8,8 @@ import ListAuthors from '/pages/ListAuthors';
 function List() {
   return (
       <div>
-          <ListBooks />
-          <ListAuthors />
+          <ListBooks libros={[]}/>
+          <ListAuthors autores={[]}/>
       </div>
   );
 }

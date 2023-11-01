@@ -1,55 +1,53 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import ListBooks from '/pages/ListBooks';
-import AddBookForm from '/pages/AddBook';
-import ListAuthors from '/pages/ListAuthors';
+
 import Login from '/pages/Login';
 import Register from '/pages/Register';
+
+import List from '../pages/List'
+import AddBook from '../pages/AddBook'
+import AddAuthor from '../pages/AddAuthor'
+import EditBook from '../pages/EditBook'
+import EditAuthor from '../pages/EditAuthor'
+import BookInfo from '../pages/BookInfo'
+import AuthorInfo from '../pages/AuthorInfo'
+
 import ProtectedRoute from '../pages/ProtectedRoute';
 
-const routes = [
-  {
-    "path": "/",
-    "element": (<List />)
-  },
-  {
-    "path": "/AddBook",
-    "element": (<AddBook />)
-  },
-  {
-    "path": "/AddAuthor",
-    "element": (<AddAuthor />)
-  },
-  {
-    "path": "/EditBook",
-    "element": (<EditBook />)
-  },
-  {
-    "path": "/EditAuthor",
-    "element": (<EditAuthor />)
-  },
-  {
-    "path": "/BookInfo",
-    "element": (<BookInfo />)
-  },
-  {
-    "path": "/AuthorInfo",
-    "element": (<AuthorInfo />)
-  }
-]
-
 const Router = () => (
-  < BrowserRouter >
+  <BrowserRouter>
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      routes.map((r) {
-        (<Route path={r.path} element={<ProtectedRoute />}>
-          <Route exact path={r.path} element={r.element} />
-        </Route>)
-      })
+      <Route path="/" element={<ProtectedRoute />}>
+        <Route exact path='/' element={<List />} />
+      </Route>
+
+      <Route path="/AddBook" element={<ProtectedRoute />}>
+        <Route exact path='/AddBook' element={<AddBook />} />
+      </Route>
+
+      <Route path="/AddAuthor" element={<ProtectedRoute />}>
+        <Route exact path='/AddAuthor' element={<AddAuthor />} />
+      </Route>
+
+      <Route path="/EditBook" element={<ProtectedRoute />}>
+        <Route exact path='/EditBook' element={<EditBook />} />
+      </Route>
+
+      <Route path="/EditAuthor" element={<ProtectedRoute />}>
+        <Route exact path='/EditAuthor' element={<EditAuthor />} />
+      </Route>
+
+      <Route path="/BookInfo" element={<ProtectedRoute />}>
+        <Route exact path='/BookInfo' element={<BookInfo />} />
+      </Route>
+
+      <Route path="/AuthorInfo" element={<ProtectedRoute />}>
+        <Route exact path='/AuthorInfo' element={<AuthorInfo />} />
+      </Route>
     </Routes>
-  </BrowserRouter >
+  </BrowserRouter>
 )
 
 export default Router 
