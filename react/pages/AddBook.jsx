@@ -2,15 +2,17 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-function AddBookForm() {
+function AddBook() {
     return (
-        <form action="/save-book" method="post" className="p-4 rounded-lg bg-white shadow ring-1 ring-inset ring-secondary">
-            <div className="space-y-3">
-                <div className="border-bottom border-3 pb-3">
-                    <h2 className="h3 font-weight-bold text-dark">Añadir libro</h2>
+        <div className="pt-5">
+        <div className="card container">
+        <form action="/AddBook" method="post" className="p-4">
+            <div className="space-y-3 ">
+                <div className="border-bottom border-1 pb-3">
+                    <h2 className="h2 font-weight-bold text-dark pt-3">Añadir libro</h2>
                     <p className="mt-1 text-muted">Ingresa los detalles del libro</p>
 
-                    <div className="mt-4 row g-3">
+                    <div className="mt-4 row g-3 ">
                         <div className="col-12 col-sm-6">
                             <label htmlFor="title" className="form-label">Título</label>
                             <input type="text" name="title" id="title" required className="form-control" />
@@ -39,21 +41,16 @@ function AddBookForm() {
                 </div>
             </div>
 
-            <div className="mt-4 d-flex justify-content-end gap-3">
-                <a href="/" className="text-dark">Cancelar</a>
-                <button type="submit" className="btn btn-primary">Guardar</button>
+            <div className="d-flex pb-3 pt-3  justify-content-end ">
+                <a href="/" className="btn btn-hover">Cancelar</a>
+                <button type="submit" className="btn" style={{ marginLeft: '10px', backgroundColor: "black", color: "white"}}>Guardar</button>
             </div>
         </form>
-    );
-}
-
-function AddBookPage() {
-    return (
-        <div className="py-5 px-4 bg-light">
-            <h1 className="text-center">Agregar Libro</h1>
-            <AddBookForm />
         </div>
+    </div>
     );
 }
 
-export default AddBookPage;
+
+
+export default AddBook;

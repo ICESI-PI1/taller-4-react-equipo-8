@@ -1,32 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './assets/styles.css';
 
 
-const libros = [
-  {
-    id: 1,
-    titulo: "Nombre del Libro 2",
-    precio: 19.99,
-  },
-  {
-    id: 2,
-    titulo: "Nombre del Libro 3",
-    precio: 29.99,
-  },
-  {
-    id: 3,
-    titulo: "Nombre del Libro 6",
-    precio: 69.99,
-  },
-  {
-    id: 4,
-    titulo: "Nombre del Libro 6",
-    precio: 69.99,
-  },
-];
-
-function ListBooks() {
+function ListBooks({libros}) {
   return (
     <>
     <div className="container mt-5 mb-4">
@@ -34,7 +12,7 @@ function ListBooks() {
         <h1 className="display-4 font-weight-bold">
           Libros
         </h1>
-        <a href="/AddBook" className="btn btn-primary">
+        <a href="/AddBook" className="btn btn-add">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
           </svg>
@@ -47,7 +25,7 @@ function ListBooks() {
       <div className="row">
         {libros.map((libro) => (
           <div key={libro.id} className="col-12 col-sm-6 col-lg-3 mb-4">
-            <a href={`/detailed-book/${libro.id}`}>
+            <a href={`/detailed-book/${libro.id}`} style={{ textDecoration: 'none' }}>
               <div className="card">
                 <div style={{ paddingLeft: '15px', paddingTop: '15px' }}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="35" height="35">
@@ -55,8 +33,8 @@ function ListBooks() {
                   </svg>
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">{libro.titulo}</h5>
-                  <p className="card-text text-muted">${libro.precio.toFixed(2)}</p>
+                  <h5 className="card-title" >{libro.titulo}</h5>
+                  <p className="card-text">${libro.precio.toFixed(2)}</p>
                 </div>
               </div>
             </a>
