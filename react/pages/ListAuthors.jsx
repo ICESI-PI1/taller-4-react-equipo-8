@@ -25,7 +25,7 @@ function ListAuthors({autores}) {
       <div className="row">
         {autores.map((autor) => (
           <div key={autor.id} className="col-12 col-sm-6 col-lg-3 mb-4">
-            <a href={`/detailed-book/${autor.id}`} style={{ textDecoration: 'none' }}>
+            <a href={`/AuthorInfo/${autor.id}`} style={{ textDecoration: 'none' }}>
               <div className="card">
                 <div style={{ paddingLeft: '15px', paddingTop: '15px' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6" width="35" height="35">

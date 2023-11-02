@@ -15,7 +15,7 @@ function List() {
 
   const hola = instance.post("libros", {"id": 1, "title":"Hola", "Autor":{"id":1,"name":"Gabriel","nationality":"Colombiano"}})
   console.log(hola)
-  /*const getLibros = async () => {
+  const getLibros = async () => {
     try {
       const response = await instance.get("libros")
       setLibros(response.data)
@@ -35,7 +35,7 @@ function List() {
     }
   }
 
-  useEffect(()=> {getAutores()},[])*/
+  useEffect(()=> {getAutores()},[])
 
   return (
       <div>
