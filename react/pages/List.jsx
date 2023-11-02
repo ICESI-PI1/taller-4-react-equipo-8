@@ -39,6 +39,9 @@ function List() {
 
   return (
       <div>
+          <div className='d-flex justify-content-end align-items-center p-5'>
+            <button onClick={() => {localStorage.removeItem("token"); window.location.href = '/login'}} className='btn btn-secondary'>Cerrar sesión</button>
+          </div>
           <ListBooks libros = {libros}/>
           <ListAuthors autores = {autores}/>
       </div>
