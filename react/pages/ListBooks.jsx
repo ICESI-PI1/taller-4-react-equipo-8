@@ -33,8 +33,7 @@ function ListBooks({libros}) {
                   </svg>
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title" >{libro.titulo}</h5>
-                  <p className="card-text">${libro.precio.toFixed(2)}</p>
+                  <h5 className="card-title" >{libro.title}</h5>
                 </div>
               </div>
             </a>

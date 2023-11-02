@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(value="*")
+@RequestMapping
+@CrossOrigin(maxAge = 3600)
 public class AutorController {
 
     private final AutorService autorService;

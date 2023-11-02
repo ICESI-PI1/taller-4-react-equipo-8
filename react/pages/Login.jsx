@@ -15,7 +15,7 @@ function Login() {
         }
 
         let user = { username, password }
-        instance.post("auth/signin", user)
+        instance.post("api/auth/signin", user)
             .then(res => {
                 if (res.status == 200) {
                     localStorage.setItem("token", res.data.token)

@@ -16,7 +16,7 @@ function Login() {
         }
 
         let user = { username, password }
-        instance.post("auth/signup", user)
+        instance.post("api/auth/signup", user)
             .then(res => {
                 if (res.status == 200) {
                     alert('Usuario registrado exitosamente')

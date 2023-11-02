@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(value="*")
+@RequestMapping
+@CrossOrigin(maxAge = 3600)
 public class BookController {
     private final BookService bookService;
     @Autowired

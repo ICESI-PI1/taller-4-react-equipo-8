@@ -9,14 +9,22 @@ import com.compunet.bookstore.services.impl.BookService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class    BookstoreApplication {
-    // private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
+
 
     public static void main(String[] args) throws ParseException {
         ConfigurableApplicationContext context = SpringApplication.run(BookstoreApplication.class, args);
@@ -44,4 +52,6 @@ public class    BookstoreApplication {
         service.save(book2);
         service.save(book3);
     }
+
+
 }
