@@ -33,7 +33,7 @@ function Login() {
         <div style={{ height: '100vh' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
             {open ? <Popup text="¡Algo salió mal! Revisa tus credenciales" closePopup={() => setOpen(false)} /> : null}
 
-            <div style={{ gap: '1rem', width: '15%' }} className="d-flex flex-column">
+            <div style={{ gap: '1rem', width: '50%' }} className="d-flex flex-column">
                 <div className="fs-2 text-center mb-4">
                     Bienvenido de vuelta
                 </div>
@@ -48,7 +48,7 @@ function Login() {
                     <input className="mt-2 form-control form-control-lg" type="password" id="passwordField" value={password} onInput={t => setPassword(t.target.value)} />
                 </div>
 
-                <button className="mt-4 btn btn-primary btn-lg" onClick={() => { login() }}>
+                <button className="mt-4 btn btn-lg" style={{backgroundColor: "black", color: "white"}} onClick={() => { login() }}>
                     Iniciar Sesión
                 </button>
 

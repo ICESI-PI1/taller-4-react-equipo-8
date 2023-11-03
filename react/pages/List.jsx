@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ListBooks from '/pages/ListBooks';
 import ListAuthors from '/pages/ListAuthors';
 import instance from "../config/axios";
+import './assets/styles.css';
 
 
 function List() {
@@ -42,7 +43,7 @@ function List() {
   return (
       <div>
           <div className='d-flex justify-content-end align-items-center p-5'>
-            <button onClick={() => {localStorage.removeItem("token"); window.location.href = '/login'}} className='btn btn-secondary'>Cerrar sesión</button>
+            <button onClick={() => {localStorage.removeItem("token"); window.location.href = '/login'}} className='btn btn-add'>Cerrar sesión</button>
           </div>
           <ListBooks libros = {libros}/>
           <ListAuthors autores = {autores}/>

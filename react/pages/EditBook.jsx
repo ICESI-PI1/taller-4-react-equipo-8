@@ -13,22 +13,43 @@ function EditBook() {
     const[realeaseDate,setRealeaseDate] = useState("")
     const[autor,setAutor] = useState({})
     const [autores, setAutores] = useState([])
-    
+    const fechaEnFormatoDeseado = libro.realeaseDate ? libro.realeaseDate.split("T")[0] : "";
 
+
+
+    
     let {id} = useParams()
 
-    const onEditBook =() => {
-        let book = {id, title, realeaseDate, autor}
-        instance.put(`libros/${id}`, book)
-        .then(res => {
-            if (res.status == 200) {
-                alert('Libro editado exitosamente')
-                window.location.href = '/';
+    const onEditBook = () => {
+    
+        const editedBook = { ...libro };
+      
+      
+        if (title !== libro.title) {
+          editedBook.title = title;
+        }
+      
+        if (realeaseDate !== libro.realeaseDate) {
+          editedBook.realeaseDate = realeaseDate;
+        }
+      
+        if (autor.id !== libro.autor.id) {
+          editedBook.autor = autor;
+        }
+      
+        instance
+          .put(`libros/${id}`, editedBook)
+          .then((res) => {
+            if (res.status === 200) {
+              alert('Libro editado exitosamente');
+              window.location.href = '/';
             }
-        }).catch(err => {
-            alert(err.message)
-        })
-    }
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+      };
+      
     
     const getLibro = async () => {
         try {
@@ -79,7 +100,7 @@ function EditBook() {
                     <div className="mt-4 row g-3 ">
                         <div className="col-12 col-sm-6">
                             <label htmlFor="title" className="form-label">Título</label>
-                            <input type="text" value={title} defaultValue={libro.title} name="title" id="title" required className="form-control" onInput={t => setTitle(t.target.value)}/>
+                            <input type="text" defaultValue={libro.title} name="title" id="title" required className="form-control" onInput={t => setTitle(t.target.value)}/>
                         </div>
 
                         <div className="col-12 col-sm-6">
@@ -92,7 +113,7 @@ function EditBook() {
 
                         <div className="col-12 col-sm-6">
                             <label htmlFor="editorial" className="form-label">Fecha de estreno</label>
-                            <input type="date" value={realeaseDate} defaultValue={libro.realeaseDate} name="date" id="date" autoComplete="postal-code" className="form-control" onInput={t => setRealeaseDate(t.target.value)}/>
+                            <input type="date" defaultValue={fechaEnFormatoDeseado} name="date" id="date" autoComplete="postal-code" className="form-control" onInput={t => setRealeaseDate(t.target.value)}/>
                         </div>
 
                     </div>

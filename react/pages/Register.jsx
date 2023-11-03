@@ -31,7 +31,7 @@ function Login() {
         <div style={{ height: '100vh' }} className="w-100 d-flex flex-column justify-content-center align-items-center">
             {open ? <Popup text="¡Algo salió mal! Revisa los campos" closePopup={() => setOpen(false)} /> : null}
 
-            <div style={{ gap: '1rem', width: '15%' }} className="d-flex flex-column">
+            <div style={{ gap: '1rem', width: '50%' }} className="d-flex flex-column">
                 <div className="fs-2 text-center mb-4">
                     Abre una Cuenta
                 </div>
@@ -51,7 +51,7 @@ function Login() {
                     <input className="mt-2 form-control form-control-lg" type="password" id="rPasswordField" value={rPassword} onInput={t => setRPassword(t.target.value)} />
                 </div>
 
-                <button onClick={() => register()} className="mt-4 btn btn-primary btn-lg">
+                <button onClick={() => register()} className="mt-4 btn btn-lg" style={{backgroundColor: "black", color: "white"}}>
                     Registrarme
                 </button>
 
