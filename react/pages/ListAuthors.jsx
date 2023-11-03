@@ -33,7 +33,7 @@ function ListAuthors({autores}) {
                       </svg>
                 </div>
                 <div className="card-body">
-                  <h5 className="card-title">{autor.nombre}</h5>
+                  <h5 className="card-title">{autor.name}</h5>
                 </div>
               </div>
             </a>

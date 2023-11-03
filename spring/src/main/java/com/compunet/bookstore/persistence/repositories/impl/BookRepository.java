@@ -11,6 +11,8 @@ import java.util.*;
 public class BookRepository implements IBookRepository {
     List<Book> books = new ArrayList<>();
 
+    Long counterId = Long.valueOf(3);
+
     @Override
     public Book save(Book book) {
         books.add(book);
@@ -60,5 +62,12 @@ public class BookRepository implements IBookRepository {
                 autor1.setNationality(autor.getNationality());
             }
         }
+    }
+
+    @Override
+    public Long getNextId() {
+        long id = counterId;
+        counterId+=1;
+        return id;
     }
 }

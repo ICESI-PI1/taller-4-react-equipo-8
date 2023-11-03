@@ -32,19 +32,19 @@ const Router = () => (
       </Route>
 
       <Route path="/EditBook" element={<ProtectedRoute />}>
-        <Route exact path='/EditBook' element={<EditBook />} />
+        <Route exact path='/EditBook/:id' element={<EditBook />} />
       </Route>
 
       <Route path="/EditAuthor" element={<ProtectedRoute />}>
-        <Route exact path='/EditAuthor' element={<EditAuthor />} />
+        <Route exact path='/EditAuthor/:id' element={<EditAuthor />} />
       </Route>
 
       <Route path="/BookInfo" element={<ProtectedRoute />}>
-        <Route exact path='/BookInfo' element={<BookInfo />} />
+        <Route exact path='/BookInfo/:id' element={<BookInfo />} />
       </Route>
 
       <Route path="/AuthorInfo" element={<ProtectedRoute />}>
-        <Route exact path='/AuthorInfo' element={<AuthorInfo />} />
+        <Route exact path='/AuthorInfo/:id' element={<AuthorInfo />} />
       </Route>
     </Routes>
   </BrowserRouter>

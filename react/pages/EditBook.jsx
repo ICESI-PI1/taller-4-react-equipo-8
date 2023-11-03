@@ -1,8 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { useEffect } from "react"
+import { useParams } from 'react-router-dom';
+import instance from "../config/axios";
+import Select from 'react-select';
 
-function EditBook({book}) {
+function EditBook() {
+
+    const [libro,setLibro] = useState({})
+    const[title,setTitle] = useState(libro.title)
+    const[realeaseDate,setRealeaseDate] = useState("")
+    const[autor,setAutor] = useState({})
+    const [autores, setAutores] = useState([])
+    
+
+    let {id} = useParams()
+
+    const onEditBook =() => {
+        let book = {id, title, realeaseDate, autor}
+        instance.put(`libros/${id}`, book)
+        .then(res => {
+            if (res.status == 200) {
+                alert('Libro editado exitosamente')
+                window.location.href = '/';
+            }
+        }).catch(err => {
+            alert(err.message)
+        })
+    }
+    
+    const getLibro = async () => {
+        try {
+        const response = await instance.get(`libros/${id}`)
+        setLibro(response.data)
+        setAutor(response.data.autor)
+        }catch (e) {
+        console.log(e)
+        }
+    }
+    useEffect(()=> {getLibro()},[])
+    console.log(autor)
+
+    const getAutores = async () => {
+        try {
+          const response = await instance.get(`autores`)
+          setAutores(response.data)
+        }catch (e) {
+          console.log(e)
+        }
+    }
+    useEffect(()=> {getAutores()},[])
+
+    const getAutor = async (id) => {
+        try {
+          const response = await instance.get(`autores/${id}`)
+          setAutor(response.data)
+        }catch (e) {
+          console.log(e)
+        }
+    }
+
+    const autorName = autor.name
+
+    const handleSelectChange = (event) =>{
+        getAutor(event.value)
+    }
 
     return (
         <div className="pt-5">
@@ -16,35 +79,29 @@ function EditBook({book}) {
                     <div className="mt-4 row g-3 ">
                         <div className="col-12 col-sm-6">
                             <label htmlFor="title" className="form-label">Título</label>
-                            <input type="text" value={book.name}  name="title" id="title" required className="form-control" />
+                            <input type="text" value={title} defaultValue={libro.title} name="title" id="title" required className="form-control" onInput={t => setTitle(t.target.value)}/>
                         </div>
 
                         <div className="col-12 col-sm-6">
-                            <label htmlFor="author" className="form-label">Autor</label>
-                            <input type="text" value={book.author}  name="author" id="author" required className="form-control" />
+                            <Select
+                                defaultValue = {autores.map((autor)=>({label:autor.name, value:autor.id})).filter((autor)=>autor.label == autorName)}
+                                options={autores.map((autor)=>({label:autor.name, value:autor.id}))}
+                                onChange={handleSelectChange}
+                            />
                         </div>
 
                         <div className="col-12 col-sm-6">
-                            <label htmlFor="editorial" className="form-label">Editorial</label>
-                            <input type="text" value={book.editorial}  name="editorial" id="editorial" autoComplete="postal-code" className="form-control" />
+                            <label htmlFor="editorial" className="form-label">Fecha de estreno</label>
+                            <input type="date" value={realeaseDate} defaultValue={libro.realeaseDate} name="date" id="date" autoComplete="postal-code" className="form-control" onInput={t => setRealeaseDate(t.target.value)}/>
                         </div>
 
-                        <div className="col-12 col-sm-6">
-                            <label htmlFor="price" className="form-label">Precio unitario</label>
-                            <input type="number" value={book.price}  name="price" id="price" autoComplete="postal-code" className="form-control" />
-                        </div>
-
-                        <div className="col-12 col-sm-6">
-                            <label htmlFor="amount" className="form-label">Unidades disponibles</label>
-                            <input type="number" value={book.amount}  name="amount" id="amount" autoComplete="postal-code" className="form-control" />
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="d-flex pb-3 pt-3  justify-content-end ">
                 <a href="/" className="btn btn-hover">Cancelar</a>
-                <button type="submit" className="btn" style={{ marginLeft: '10px', backgroundColor: "black", color: "white"}}>Guardar</button>
+                <a href="/"  onClick={() => onEditBook()} className="btn" style={{ marginLeft: '10px', backgroundColor: "black", color: "white"}}>Guardar</a>
             </div>
         </form>
         </div>

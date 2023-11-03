@@ -13,8 +13,9 @@ function List() {
   const [autores,setAutores] = useState([])
 
 
-  const hola = instance.post("libros", {"id": 1, "title":"Hola", "Autor":{"id":1,"name":"Gabriel","nationality":"Colombiano"}})
-  console.log(hola)
+  /*const hola = instance.post("libros", {"id": 1, "title":"Hola", "Autor":{"id":1,"name":"Gabriel","nationality":"Colombiano"}})
+  console.log(hola)*/
+  
   const getLibros = async () => {
     try {
       const response = await instance.get("libros")
@@ -24,6 +25,7 @@ function List() {
     }
   }
 
+  console.log(libros)
   useEffect(()=> {getLibros()},[])
 
   const getAutores = async () => {

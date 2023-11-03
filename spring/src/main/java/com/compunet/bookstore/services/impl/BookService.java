@@ -47,4 +47,6 @@ public class BookService implements IBookService {
     public void sort(){
         bookRepository.sort();
     }
+
+    public Long getNextId() {return bookRepository.getNextId();}
 }

@@ -38,4 +38,9 @@ public class AutorService implements IAuthorService {
     public List<Book> getBookByAutor(Long autorId) {
         return autorRepository.getBookByAutor(autorId);
     }
+
+    public Long getNextId() { return autorRepository.getNextId();   }
+
+    public void sort() {autorRepository.sort();
+    }
 }

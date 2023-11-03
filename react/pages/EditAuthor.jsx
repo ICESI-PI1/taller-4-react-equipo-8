@@ -1,8 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import { useEffect } from "react"
+import { useParams } from 'react-router-dom';
+import instance from "../config/axios";
 
-function EditAutor({author}) {
+function EditAutor() {
+
+    const [autor, setAutor] = useState({})
+    const [name,setName] = useState("")
+    const [nationality,setNationality] = useState("")
+
+    let {id} = useParams()
+
+    const onEditAutor =() => {
+        let autor = {id, name, nationality}
+        instance.put(`autores/${id}`, autor)
+        .then(res => {
+            if (res.status == 200) {
+                alert('Autor editado exitosamente')
+                window.location.href = '/';
+            }
+        }).catch(err => {
+            alert(err.message)
+        })
+    }
+
+    const getAutor = async () => {
+        try {
+        const response = await instance.get(`autores/${id}`)
+        setAutor(response.data)
+        }catch (e) {
+        console.log(e)
+        }
+    }
+    useEffect(()=> {getAutor()},[])
     
     return (
         <div className="pt-5">
@@ -16,12 +48,12 @@ function EditAutor({author}) {
                             <div className="mt-4 row g-3">
                                 <div className="col-12 col-sm-6">
                                     <label htmlFor="title" className="form-label">Nombre</label>
-                                    <input type="text" value={author.name} name="title" id="title" required className="form-control" />
+                                    <input type="text" value={name} name="title" id="title" required className="form-control" onInput={t => setName(t.target.value)}/>
                                 </div>
 
                                 <div className="col-12 col-sm-6">
                                     <label htmlFor="author" className="form-label">Nacionalidad</label>
-                                    <input type="text" value={author.nacionalidad} name="author" id="author" required className="form-control" />
+                                    <input type="text" value={nationality} name="author" id="author" required className="form-control" onInput={t => setNationality(t.target.value)}/>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +61,7 @@ function EditAutor({author}) {
 
                     <div className="d-flex pb-3 pt-3 justify-content-end">
                         <a href="/" className="btn btn-hover">Cancelar</a>
-                        <button type="submit" className="btn" style={{ marginLeft: '10px', backgroundColor: "black", color: "white" }}>Guardar</button>
+                        <a href="/"  onClick={() => onEditAutor()} className="btn" style={{ marginLeft: '10px', backgroundColor: "black", color: "white" }}>Guardar</a>
                     </div>
                 </form>
             </div>

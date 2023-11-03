@@ -19,4 +19,6 @@ public interface IBookRepository {
     List<Book> getBooksByAutor(Long autorId);
 
     void editAutor(Autor autor);
+
+    Long getNextId();
 }

@@ -14,5 +14,8 @@ public interface IAutorRepository {
     void deleteAutor(Long id);
     List<Book> getBookByAutor(Long autorId);
     Optional<Autor> findById(Long autorId);
+    Long getNextId();
+
+    void sort();
 }
 

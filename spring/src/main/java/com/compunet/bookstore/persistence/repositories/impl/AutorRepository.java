@@ -6,15 +6,14 @@ import com.compunet.bookstore.persistence.repositories.IAutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class AutorRepository implements IAutorRepository {
 
     public static List<Autor> autors = new ArrayList<Autor>();
+
+    Long counterId = Long.valueOf(3);
 
     @Autowired
     private BookRepository bookRepository;
@@ -61,5 +60,18 @@ public class AutorRepository implements IAutorRepository {
     @Override
     public Optional<Autor> findById(Long id) {
         return autors.stream().filter(b-> Objects.equals(b.getId(), id)).findFirst();
+    }
+
+    @Override
+    public Long getNextId() {
+        long id = counterId;
+        counterId+=1;
+        return id;
+    }
+
+    @Override
+    public void sort() {
+        Comparator<Autor> idComparator = Comparator.comparingLong(Autor::getId);
+        autors.sort(idComparator);
     }
 }

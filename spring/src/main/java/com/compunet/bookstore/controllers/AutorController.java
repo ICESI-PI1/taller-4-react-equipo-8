@@ -26,6 +26,9 @@ public class AutorController {
         return autorService.getAllAuthor();
     }
 
+    @GetMapping("/autorId")
+    public Long getNextId() {return autorService.getNextId();}
+
     @GetMapping("/autores/{id}")
     public Optional<Autor> getAutor(@PathVariable("id") Long id){
         return autorService.getDetails(id);
@@ -37,6 +40,7 @@ public class AutorController {
     @PutMapping("autores/{id}")
     public void editAutor(@RequestBody Autor autor){
         autorService.editAutor(autor);
+        autorService.sort();
     }
 
     @DeleteMapping("/autores/{id}")
